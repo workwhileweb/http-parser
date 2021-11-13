@@ -1,7 +1,7 @@
 ﻿using System;
-using HttpWebRequestExecutor;
+using HttpParser;
 
-namespace HttpHandler
+namespace Run
 {
     public class RequestRunner
     {

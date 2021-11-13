@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     internal class HttpWebResponseWrapper : IHttpWebResponse
     {

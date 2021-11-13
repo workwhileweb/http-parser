@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HttpWebRequestExecutor\HttpWebRequestExecutor.csproj" />
+    <ProjectReference Include="..\HttpWebRequestExecutor\HttpParser.csproj" />
   </ItemGroup>
 
 </Project>

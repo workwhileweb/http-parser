@@ -1,4 +1,4 @@
-﻿using HttpWebRequestExecutor;
+﻿using HttpParser;
 using NUnit.Framework;
 
 namespace Tests

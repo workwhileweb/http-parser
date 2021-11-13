@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Text;
-using HttpWebRequestExecutor;
+using HttpParser;
 using Moq;
 using NUnit.Framework;
 

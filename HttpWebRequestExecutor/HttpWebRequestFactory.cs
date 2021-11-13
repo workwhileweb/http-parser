@@ -1,4 +1,4 @@
-﻿namespace HttpWebRequestExecutor
+﻿namespace HttpParser
 {
     public class HttpWebRequestFactory : IHttpWebRequestFactory
     {

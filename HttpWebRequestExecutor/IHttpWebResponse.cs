@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     public interface IHttpWebResponse : IDisposable
     {

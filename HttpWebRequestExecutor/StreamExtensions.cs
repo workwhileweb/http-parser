@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using ICSharpCode.SharpZipLib.GZip;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     internal static class StreamExtensions
     {

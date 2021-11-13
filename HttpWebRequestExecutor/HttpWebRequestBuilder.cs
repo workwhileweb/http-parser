@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     public static class HttpWebRequestBuilder
     {

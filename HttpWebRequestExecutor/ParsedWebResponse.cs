@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     public class ParsedWebResponse
     {

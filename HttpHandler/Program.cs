@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using HttpWebRequestExecutor;
+using HttpParser;
 
-namespace HttpHandler
+namespace Run
 {
     internal class Program
     {

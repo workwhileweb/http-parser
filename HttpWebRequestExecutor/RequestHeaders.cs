@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     internal class RequestHeaders
     {

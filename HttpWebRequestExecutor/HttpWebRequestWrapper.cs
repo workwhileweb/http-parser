@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     internal class HttpWebRequestWrapper : IHttpWebRequest
     {

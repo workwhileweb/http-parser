@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HttpWebRequestExecutor
+namespace HttpParser
 {
     public static class Parser
     {
