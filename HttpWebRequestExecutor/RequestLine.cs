@@ -17,7 +17,6 @@ namespace HttpParser
         {
             var firstLine = lines[0].Split(' ');
             ValidateRequestLine(firstLine);
-
             SetHttpMethod(firstLine[0]);
             SetUrl(firstLine[1]);
             SetHttpVersion(firstLine[2]);
@@ -31,10 +30,7 @@ namespace HttpParser
         private void SetHttpMethod(string method)
         {
             method = method.Trim().ToUpper();
-
-            if (!_validHttpVerbs.Contains(method))
-                throw new Exception(method);
-
+            if (!_validHttpVerbs.Contains(method)) throw new Exception(method);
             Method = method;
         }
 

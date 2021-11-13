@@ -24,9 +24,7 @@ namespace HttpParser
             for (var i = 1; i < lastIndex; i++)
             {
                 var (key, value) = GetHeader(lines[i]);
-
                 if (key == "Cookie") continue;
-
                 Headers[key] = value;
             }
         }
@@ -34,7 +32,6 @@ namespace HttpParser
         private static (string key, string value) GetHeader(string line)
         {
             var pieces = line.Split(new[] { ':' }, 2);
-
             return (pieces[0].Trim(), pieces[1].Trim());
         }
 

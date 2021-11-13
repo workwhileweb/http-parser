@@ -12,7 +12,6 @@ namespace HttpParser
             var requestHeaders = new RequestHeaders(lines);
             requestHeaders.AddHeader("Method", requestLine.Method);
             requestHeaders.AddHeader("HttpVersion", requestLine.HttpVersion);
-
             var requestCookies = new RequestCookies(lines);
             var requestBody = new RequestBody(requestLine, lines);
 
