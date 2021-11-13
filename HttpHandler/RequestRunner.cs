@@ -1,5 +1,5 @@
-﻿using HttpWebRequestExecutor.Interfaces;
-using System;
+﻿using System;
+using HttpWebRequestExecutor;
 
 namespace HttpHandler
 {
@@ -14,17 +14,17 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9";
 
-        private readonly IHttpWebRequestFactory factory;
+        private readonly IHttpWebRequestFactory _factory;
 
         public RequestRunner(IHttpWebRequestFactory factory)
         {
-            this.factory = factory;
+            _factory = factory;
         }
 
         public void Run()
         {
-            var parsed = HttpParser.Parser.ParseRawRequest(GetWithoutQueryString);
-            var req = factory.BuildRequest(parsed);
+            var parsed = Parser.ParseRawRequest(GetWithoutQueryString);
+            var req = _factory.BuildRequest(parsed);
 
             var resp = req.GetResponse();
             Console.WriteLine(resp.GetParsedWebResponse().ResponseText);

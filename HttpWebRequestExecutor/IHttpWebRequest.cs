@@ -1,4 +1,4 @@
-﻿namespace HttpWebRequestExecutor.Interfaces
+﻿namespace HttpWebRequestExecutor
 {
     public interface IHttpWebRequest
     {

@@ -1,28 +1,26 @@
-﻿using HttpWebRequestExecutor.Interfaces;
-using HttpWebRequestExecutor.Models;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 
-namespace HttpWebRequestExecutor.Lib
+namespace HttpWebRequestExecutor
 {
     internal class HttpWebResponseWrapper : IHttpWebResponse
     {
-        private HttpWebResponse response;
+        private HttpWebResponse _response;
 
         public HttpWebResponseWrapper(HttpWebResponse response)
         {
-            this.response = response;
+            this._response = response;
         }
 
         public Stream GetResponseStream()
         {
-            return response.GetResponseStream();
+            return _response.GetResponseStream();
         }
 
         public ParsedWebResponse GetParsedWebResponse()
         {
-            return new ParsedWebResponse(response);
+            return new ParsedWebResponse(_response);
         }
 
         public void Dispose()
@@ -33,10 +31,10 @@ namespace HttpWebRequestExecutor.Lib
 
         private void Dispose(bool disposing)
         {
-            if (!disposing || response == null) return;
+            if (!disposing || _response == null) return;
 
-            response.Dispose();
-            response = null;
+            _response.Dispose();
+            _response = null;
         }
     }
 }

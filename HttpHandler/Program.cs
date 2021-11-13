@@ -1,13 +1,12 @@
-﻿using HttpWebRequestExecutor.Factories;
-using HttpWebRequestExecutor.Interfaces;
-using System;
+﻿using System;
 using System.Net;
+using HttpWebRequestExecutor;
 
 namespace HttpHandler
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -17,7 +16,7 @@ namespace HttpHandler
             }
             catch(WebException wex)
             {
-                Console.WriteLine($"Web exception caught. {wex.Message}");
+                Console.WriteLine(wex.Message);
             }
         }
     }

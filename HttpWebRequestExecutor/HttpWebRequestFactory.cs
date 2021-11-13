@@ -1,9 +1,4 @@
-﻿using HttpBuilder;
-using HttpParser.Models;
-using HttpWebRequestExecutor.Interfaces;
-using HttpWebRequestExecutor.Lib;
-
-namespace HttpWebRequestExecutor.Factories
+﻿namespace HttpWebRequestExecutor
 {
     public class HttpWebRequestFactory : IHttpWebRequestFactory
     {

@@ -1,10 +1,10 @@
-﻿using HttpWebRequestExecutor.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 
-namespace HttpWebRequestExecutor.Models
+namespace HttpWebRequestExecutor
 {
     public class ParsedWebResponse
     {
@@ -26,7 +26,7 @@ namespace HttpWebRequestExecutor.Models
             ResponseUri = response.ResponseUri;
         }
 
-        private Dictionary<string, string[]> ConvertWebHeadersToDictionary(WebHeaderCollection headers)
+        private static Dictionary<string, string[]> ConvertWebHeadersToDictionary(NameValueCollection headers)
         {
             return Enumerable.Range(0, headers.Count).ToDictionary(i => headers.Keys[i], headers.GetValues);
         }

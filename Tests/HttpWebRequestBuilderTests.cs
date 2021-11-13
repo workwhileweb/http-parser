@@ -1,13 +1,8 @@
-﻿using HttpBuilder;
-using HttpParser;
-using NUnit.Framework;
-using System.IO;
+﻿using System.IO;
 using System.Text;
+using HttpWebRequestExecutor;
 using Moq;
-using HttpParser.Models;
-using HttpWebRequestExecutor.Models;
-using Tests.FakeData;
-using HttpWebRequestExecutor.Interfaces;
+using NUnit.Framework;
 
 namespace Tests
 {
@@ -61,7 +56,7 @@ namespace Tests
         public void Should_Get_Fake_ParsedWebResponse()
         {
             // arrange
-            var expected = "hello world";
+            const string expected = "hello world";
 
             var response = new Mock<IHttpWebResponse>();
             response.Setup(s => s.GetParsedWebResponse()).Returns(FakeParsedWebResponse(expected));
@@ -100,7 +95,7 @@ namespace Tests
 
         private static ParsedWebResponse FakeParsedWebResponse(string responseText)
         {
-            return new ParsedWebResponse()
+            return new ParsedWebResponse
             {
                 ResponseText = responseText
             };

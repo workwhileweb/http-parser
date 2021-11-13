@@ -1,9 +1,7 @@
-﻿using HttpBuilder.Extensions;
-using HttpParser.Models;
-using System;
+﻿using System;
 using System.Net;
 
-namespace HttpBuilder
+namespace HttpWebRequestExecutor
 {
     public static class HttpWebRequestBuilder
     {

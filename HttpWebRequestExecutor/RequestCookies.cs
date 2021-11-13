@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace HttpParser.Models
+namespace HttpWebRequestExecutor
 {
     internal class RequestCookies
     {
         public Dictionary<string, string> ParsedCookies = new Dictionary<string, string>();
+
         public RequestCookies(string[] lines)
         {
             var cookieLine = ExtractCookiesLine(lines);
             PopulateParsedCookies(cookieLine);
         }
 
-        private string ExtractCookiesLine(string[] lines)
+        private static string ExtractCookiesLine(string[] lines)
         {
             var cookieIndex = Array.FindLastIndex(lines, l => l.StartsWith("Cookie"));
 
@@ -28,10 +29,7 @@ namespace HttpParser.Models
             var matches = new Regex(@"Cookie:(?<Cookie>(.+))", RegexOptions.Singleline).Match(cookiesLine);
             var cookies = matches.Groups["Cookie"].ToString().Trim().Split(';');
 
-            if (cookies?.Length < 1 || cookies.Contains(""))
-            {
-                return;
-            }
+            if (cookies?.Length < 1 || cookies.Contains("")) return;
 
             foreach (var cookie in cookies)
             {

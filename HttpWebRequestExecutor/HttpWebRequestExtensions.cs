@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace HttpBuilder.Extensions
+namespace HttpWebRequestExecutor
 {
     internal static class HttpWebRequestExtensions
     {
@@ -11,14 +11,7 @@ namespace HttpBuilder.Extensions
         {
             foreach (var header in headers)
             {
-                try
-                {
-                    request.SetHttpHeader(header.Key, header.Value);
-                }
-                catch(Exception)
-                {
-                    Console.WriteLine($"Could not set HTTP header {header.Key}: {header.Value}");
-                }
+                request.SetHttpHeader(header.Key, header.Value);
             }
         }
 

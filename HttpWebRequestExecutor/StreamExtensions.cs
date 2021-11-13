@@ -1,7 +1,7 @@
-﻿using ICSharpCode.SharpZipLib.GZip;
-using System.IO;
+﻿using System.IO;
+using ICSharpCode.SharpZipLib.GZip;
 
-namespace HttpWebRequestExecutor.Extensions
+namespace HttpWebRequestExecutor
 {
     internal static class StreamExtensions
     {
@@ -17,14 +17,9 @@ namespace HttpWebRequestExecutor.Extensions
 
         public static Stream DecompressGzipStream(this Stream stream)
         {
-            if (stream == null) return stream;
+            if (stream == null) return null;
 
             Stream compressedStream = new GZipInputStream(stream);
-
-            if (compressedStream == null)
-            {
-                return stream;
-            }
 
             var decompressedStream = new MemoryStream();
             var size = 2048;
@@ -34,13 +29,9 @@ namespace HttpWebRequestExecutor.Extensions
             {
                 size = compressedStream.Read(writeData, 0, size);
                 if (size > 0)
-                {
                     decompressedStream.Write(writeData, 0, size);
-                }
                 else
-                {
                     break;
-                }
             }
 
             decompressedStream.Seek(0, SeekOrigin.Begin);

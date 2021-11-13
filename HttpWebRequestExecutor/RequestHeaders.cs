@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HttpParser.Models
+namespace HttpWebRequestExecutor
 {
     internal class RequestHeaders
     {
@@ -17,17 +17,11 @@ namespace HttpParser.Models
             Headers[key] = value;
         }
 
-        public void RemoveHeader(string key)
-        {
-            if (Headers.ContainsKey(key))
-                Headers.Remove(key);
-        }
-
         private void InitializeHeaders(string[] lines)
         {
             Headers = new Dictionary<string, string>();
             var lastIndex = DetectLastRowIndex(lines);
-            for (int i = 1; i < lastIndex; i++)
+            for (var i = 1; i < lastIndex; i++)
             {
                 var (key, value) = GetHeader(lines[i]);
 

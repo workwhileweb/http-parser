@@ -1,8 +1,7 @@
-﻿using HttpWebRequestExecutor.Models;
-using System;
+﻿using System;
 using System.IO;
 
-namespace HttpWebRequestExecutor.Interfaces
+namespace HttpWebRequestExecutor
 {
     public interface IHttpWebResponse : IDisposable
     {

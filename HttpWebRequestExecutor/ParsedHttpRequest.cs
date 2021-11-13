@@ -4,10 +4,17 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace HttpParser.Models
+namespace HttpWebRequestExecutor
 {
     public class ParsedHttpRequest
     {
+        private readonly IgnoreHttpParserOptions _ignoreHttpParserOptions;
+
+        public ParsedHttpRequest(IgnoreHttpParserOptions options = null)
+        {
+            _ignoreHttpParserOptions = options;
+        }
+
         public string Url { get; set; }
         public Dictionary<string, string> Headers { get; set; }
         public Dictionary<string, string> Cookies { get; set; }
@@ -15,33 +22,19 @@ namespace HttpParser.Models
         public Uri Uri { get; set; }
         public CookieContainer CookieContainer { get; set; }
 
-        private IgnoreHttpParserOptions ignoreHttpParserOptions;
-        public ParsedHttpRequest(IgnoreHttpParserOptions options = null)
-        {
-            ignoreHttpParserOptions = options;
-        }
-
         public void ApplyIgnoreOptions()
         {
-            if (ignoreHttpParserOptions == null) return;
+            if (_ignoreHttpParserOptions == null) return;
 
-            if (ignoreHttpParserOptions.IgnoreUrl)
-            {
-                Url = null;
-            }
-            if (ignoreHttpParserOptions.IgnoreHeaders)
-            {
-                Headers = null;
-            }
-            if (ignoreHttpParserOptions.IgnoreCookies)
+            if (_ignoreHttpParserOptions.IgnoreUrl) Url = null;
+            if (_ignoreHttpParserOptions.IgnoreHeaders) Headers = null;
+            if (_ignoreHttpParserOptions.IgnoreCookies)
             {
                 Cookies = null;
                 CookieContainer = null;
             }
-            if (ignoreHttpParserOptions.IgnoreRequestBody)
-            {
-                RequestBody = null;
-            }
+
+            if (_ignoreHttpParserOptions.IgnoreRequestBody) RequestBody = null;
         }
 
         public override string ToString()
@@ -51,30 +44,26 @@ namespace HttpParser.Models
 
             var sb = new StringBuilder($"{method} {Url} {version}{Environment.NewLine}");
 
-            var headersToIgnore = new List<string> { "Method", "HttpVersion" };
+            var headersToIgnore = new List<string> {"Method", "HttpVersion"};
             if (Cookies == null) headersToIgnore.Add("Cookie");
 
-            foreach(var header in Headers)
+            foreach (var header in Headers.Where(header => !headersToIgnore.Contains(header.Key)))
             {
-                if (headersToIgnore.Contains(header.Key)) continue;
                 sb.Append($"{header.Key}: {header.Value}{Environment.NewLine}");
             }
 
             if (Cookies?.Count > 0)
             {
                 var cookies = string.Join(";", Cookies
-                    .Select(cookie => $" {cookie.Key}={cookie.Value};"))
+                        .Select(cookie => $" {cookie.Key}={cookie.Value};"))
                     .TrimEnd(';');
 
                 sb.Append($"Cookie:{cookies}{Environment.NewLine}");
             }
-            
-            if (method == "POST")
-            {
-                sb.Append(Environment.NewLine);
-                sb.Append(RequestBody);
-            }
 
+            if (method != "POST") return sb.ToString().Trim();
+            sb.Append(Environment.NewLine);
+            sb.Append(RequestBody);
             return sb.ToString().Trim();
         }
     }

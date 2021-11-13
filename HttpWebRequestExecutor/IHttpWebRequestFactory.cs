@@ -1,6 +1,4 @@
-﻿using HttpParser.Models;
-
-namespace HttpWebRequestExecutor.Interfaces
+﻿namespace HttpWebRequestExecutor
 {
     public interface IHttpWebRequestFactory
     {

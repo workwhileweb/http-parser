@@ -1,4 +1,4 @@
-﻿namespace Tests.FakeData
+﻿namespace Tests
 {
     public class FakeRawRequests
     {
@@ -50,7 +50,8 @@ helloworld
 
 ";
 
-        public const string RequestWithCookiesInTheWrongSpot = @"POST http://www.providerlookuponline.com/Coventry/po7/Client_FacetWebService.asmx/FillStateFacet HTTP/1.1
+        public const string RequestWithCookiesInTheWrongSpot =
+            @"POST http://www.providerlookuponline.com/Coventry/po7/Client_FacetWebService.asmx/FillStateFacet HTTP/1.1
 Accept: application/json, text/javascript, */*; q=0.01
 Origin: http://www.providerlookuponline.com
 X-Requested-With: XMLHttpRequest
