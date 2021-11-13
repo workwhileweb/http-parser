@@ -7,11 +7,20 @@ namespace HttpParser
 {
     public class RequestLine
     {
+        private const string ProtocolHttp = "HTTP/";
+        private const string ProtocolHttpRegEx = ProtocolHttp + @"\d.\d";
+        private const string ProtocolHttp11 = ProtocolHttp + "1.1";
+
+        // ReSharper disable once InconsistentNaming
+        public const string POST = nameof(POST);
+        // ReSharper disable once InconsistentNaming
+        public const string GET = nameof(GET);
+
         public string Method { get; set; }
         public string Url { get; set; }
         public string HttpVersion { get; set; }
 
-        private readonly string[] _validHttpVerbs = { "GET", "POST" };
+        private readonly string[] _validHttpVerbs = { GET, POST };
 
         public RequestLine(IReadOnlyList<string> lines)
         {
@@ -48,7 +57,7 @@ namespace HttpParser
 
         private void SetHttpVersion(string version)
         {
-            HttpVersion = !Regex.IsMatch(version, @"HTTP/\d.\d") ? "HTTP/1.1" : version.Trim();
+            HttpVersion = !Regex.IsMatch(version, ProtocolHttpRegEx) ? ProtocolHttp11 : version.Trim();
         }
     }
 }

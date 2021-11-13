@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 namespace HttpParser
 {
-    internal class RequestHeaders
+    public class RequestHeaders
     {
+        public const string Method = nameof(Method);
+        public const string HttpVersion = nameof(HttpVersion);
+        public const string Cookie = nameof(Cookie);
+
         public Dictionary<string, string> Headers;
 
         public RequestHeaders(string[] lines)
@@ -24,7 +28,7 @@ namespace HttpParser
             for (var i = 1; i < lastIndex; i++)
             {
                 var (key, value) = GetHeader(lines[i]);
-                if (key == "Cookie") continue;
+                if (key == Cookie) continue;
                 Headers[key] = value;
             }
         }

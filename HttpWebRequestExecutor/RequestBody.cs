@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HttpParser
@@ -9,12 +10,13 @@ namespace HttpParser
         {
             switch (requestLine.Method)
             {
-                case "GET":
+                case RequestLine.GET:
                     Body = SetBodyFromUrlGet(requestLine.Url);
                     break;
-                case "POST":
+                case RequestLine.POST:
                     Body = SetBodyFromPost(lines);
                     break;
+                default: throw new Exception(nameof(RequestBody));
             }
         }
 
@@ -22,15 +24,12 @@ namespace HttpParser
 
         private static string SetBodyFromUrlGet(string url)
         {
-            return url.Contains('?')
-                ? url.Split('?')[1]
-                : null;
+            return url.Contains('?') ? url.Split('?')[1] : null;
         }
 
         private static string SetBodyFromPost(IReadOnlyList<string> lines)
         {
             var index = lines.Count;
-
             return index == -1 ? null : lines[index - 1];
         }
     }
